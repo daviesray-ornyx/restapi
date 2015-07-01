@@ -1,7 +1,7 @@
 var restify = require('restify');
 var mongojs = require('mongojs');
 var morgan = require('morgan');
-var db = mongojs('bucketlistapp',['appUsers','bucketLists']);
+var db = mongojs('bucketlistapp',['appUsers','userProfiles','authCodes','reports']);
 var server = restify.createServer();
 /*
   Adding middlewares... go with server.use(restify.middlwarename(parms))
@@ -22,7 +22,6 @@ server.use(function(req, res, next){
 })
 
 var manageUsers = require('./auth/manageUser')(server, db);
-var manageLists = require('./list/manageList');
 
 /* starting our server */
 server.listen(process.env.PORT || 9804, function(){
